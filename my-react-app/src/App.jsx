@@ -1,3 +1,15 @@
 export default function Square() {
-  return <button className="square">X</button>;
+  return ( //can return one fragment with two buttons
+    <>
+      <button className="square">X</button> 
+      <button className="square">X</button>
+      <button className="square">X</button> 
+      <button className="square">X</button>
+      <button className="square">X</button> 
+      <button className="square">X</button>
+      <button className="square">X</button> 
+      <button className="square">X</button>
+      <button className="square">X</button> 
+    </>
+  );
 }
