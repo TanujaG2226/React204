@@ -11,10 +11,11 @@ function Square({value, onSquareClick}) {
 }
 
 export default function Board() {
+  const [xIsNext, setXIsNext] = useState(true);
   const [squares, setSquares] = useState(Array(9).fill(null)); //creates array of 9
   
   function handleClick(i){
-    const nextSquares=squares.slice();
+    const nextSquares=squares.slice(); //makes copy of array (not modifying original)
     nextSquares[i] = "X";
     setSquares(nextSquares);
   }
