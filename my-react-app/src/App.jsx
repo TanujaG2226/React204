@@ -11,13 +11,23 @@ function Square({value, onSquareClick}) {
 }
 
 export default function Board() {
-  const [xIsNext, setXIsNext] = useState(true);
+  const [xIsNext, setXIsNext] = useState(true); //setting first move to be X
   const [squares, setSquares] = useState(Array(9).fill(null)); //creates array of 9
   
   function handleClick(i){
+    //to prevent the same quare form changing multiple times
+    if(squares[i]){
+      return;
+    }
     const nextSquares=squares.slice(); //makes copy of array (not modifying original)
-    nextSquares[i] = "X";
+    if(xIsNext){
+      nextSquares[i] = "X"
+    }
+    else{
+      nextSquares[i] = "O"
+    }
     setSquares(nextSquares);
+    setXIsNext(!xIsNext); //flipping turns
   }
   return (
     <>
