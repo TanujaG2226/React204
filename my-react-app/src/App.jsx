@@ -15,8 +15,8 @@ export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null)); //creates array of 9
   
   function handleClick(i){
-    //to prevent the same quare form changing multiple times
-    if(squares[i]){
+    //to prevent the same square from changing multiple times and checking for winner
+    if(squares[i]||calculateWinner(squares)){
       return;
     }
     const nextSquares=squares.slice(); //makes copy of array (not modifying original)
@@ -48,4 +48,27 @@ export default function Board() {
       </div>
     </>
   );
+}
+
+//to figure out the winner
+function calculateWinner(squares){
+  //possible win combinations
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    //the values of the borad at a,b,c are equal
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
 }
